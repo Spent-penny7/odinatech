@@ -1,0 +1,591 @@
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+}
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- CSS Variables & Reset --- */
+:root {
+    --brand-blue: #0A51A1;
+    --brand-green: #2BB34B;
+    --text-dark: #1e293b;
+    --bg-light: #f8fafc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    /* Giving the body extreme height to showcase the custom scrollbar */
+    min-height: 200vh; 
+}
+
+/* --- Custom Scrollbar --- */
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+/* Track background */
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+/* Draggable scroll thumb with brand gradient */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--brand-blue), var(--brand-green));
+    border-radius: 6px;
+    border: 3px solid #f1f5f9; /* Creates a padding effect around the thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #083d7a, #208739);
+}
+
+/* --- Header & Navigation --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px); /* Modern blurry glass look */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* --- Logo Styling --- */
+.logo-box img {
+    height: 70px; /* Adjust height based on layout preference */
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* --- Nav Menu Links --- */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+/* Color swap on hover */
+.nav-menu a:hover {
+    color: var(--brand-blue);
+}
+
+/* --- Link Underline Animation --- */
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--brand-blue), var(--brand-green));
+    border-radius: 2px;
+    transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+.nav-menu a.active {
+    color: var(--brand-blue);
+    font-weight: 600;
+}
+
+/* --- Action Button --- */
+.cta-button {
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
+    color: white;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(43, 179, 75, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10, 81, 161, 0.35);
+}
+
+/* --- Content Spacer (Offsets fixed header) --- */
+.main-content {
+    margin-top: 120px;
+    padding: 40px;
+    text-align: center;
+}
+
+
+.hero{
+    height:90vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5));color:white
+}
+.cards,.gallery,.stats{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;padding:20px
+}
+.card{
+    padding:30px;
+    background:#f3f3f3;
+    border-radius:10px;
+    transition:.3s
+}
+.card:hover{
+    transform:translateY(-10px)
+}
+section{
+    padding:50px 20px;
+    text-align:center
+}
+form{
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px
+}
+input,textarea{
+    padding:10px
+}
+.whatsapp{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    font-size:40px
+}
+@media(max-width:768px)
+{
+    header
+    {flex-direction:column
+    }
+}
+/* Container hides the scrollbars and clips the edges */
+.slider-container {
+  overflow: hidden;
+  width: 100%;
+  background: #ffffff;
+  padding: 30px 0;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* The track that actually moves */
+.slider-track {
+  display: flex;
+  width: calc(270px * 8); /* (Width of 1 slide + padding) * Total slides */
+  animation: scroll 25s linear infinite;
+}
+
+/* Pauses the continuous animation when you hover over the slideshow */
+.slider-container:hover .slider-track {
+  animation-play-state: paused;
+}
+
+/* Individual slide styling */
+.slide {
+  width: 270px;
+  height: 200px;
+  padding: 0 15px;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Subtle pop effect on hover before clicking */
+.slide img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* The Continuous Scroll Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Moves exactly half the width of the total track (the length of the original set of images) */
+    transform: translateX(calc(-270px * 4)); 
+  }
+}
+
+/* --- Lightbox / Zoom Styles --- */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Active state triggered by JS */
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The actual enlarged image animation */
+.lightbox img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 8px;
+  transform: scale(0.7);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth pop-out effect */
+}
+
+.lightbox.active img {
+  transform: scale(1);
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  color: #fff;
+  font-size: 45px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #ddd;
+}
+/* --- Footer Styling --- */
+.cng-footer {
+  background-color: #1a252f; /* Dark eco-slate background */
+  color: #ecf0f1;
+  font-family: Arial, sans-serif;
+  padding: 40px 0 0 0;
+  margin-top: auto; /* Pushes footer to bottom if page content is short */
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section h3 {
+  color: #2ecc71; /* Accent green for CNG theme */
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.footer-section h3::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 2px;
+  background-color: #2ecc71;
+  margin-top: 8px;
+}
+
+.footer-section p {
+  line-height: 1.6;
+  color: #bdc3c7;
+  font-size: 0.95rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+  color: #bdc3c7;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #2ecc71;
+  padding-left: 5px;
+}
+
+.footer-bottom {
+  background-color: #111a22;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #2c3e50;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+/* Tablet & Mobile Responsiveness */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-section h3::after {
+    margin: 8px auto 0 auto;
+  }
+  
+  .footer-section ul li a:hover {
+    padding-left: 0;
+  }
+}
+/* Form Container */
+.contact-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 550px;
+}
+
+.contact-container h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.contact-container p {
+    color: #7f8c8d;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for a premium feel */
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #27ae60; /* CNG Green accent */
+    background-color: #fff;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #27ae60; /* CNG Green */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #219653;
+}
+.contacts{
+     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    background:  #25D366;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transfrom 0.3 ease
+    background-color 0.3s;
+}
+.whatsapp-btn:hover{
+    background-color: #128c7e;
+    transform: translateY(-2px);
+}
+@media (max-width: 768px){
+    .navbar{
+        padding: 10px 20px;
+        display: none !important;
+    }
+    h1{
+        font-size: 2rem;
+    }
+}
+.card{
+    width: 100%;
+    max-width: 400px;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+.gallery{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #f0f0f0;
+}
+.gallery img{
+    width: 295px;
+    height: 300px;
+    border: 2px solid #ff3d0036;
+    border-radius: 13px;
+    box-shadow: 4px 7px 0px #00000042;
+    cursor: pointer;
+    margin: 10px;
+    transition: 400ms;
+}
+.gallery img:hover{
+    transform: scale(1.03);
+}
+/* Container styling */
+.social-container {
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-container h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Individual link styling */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none; /* Removes underline */
+    color: #555; /* Default grey color before hover */
+    font-size: 18px;
+    transition: color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Icon specific styling */
+.social-link i {
+    margin-right: 12px; /* Space between icon and text */
+    font-size: 24px; /* Icon size */
+    width: 30px; /* Aligns text perfectly by giving icons equal width */
+    text-align: center;
+}
+
+/* Hover effects for specific brand colors */
+.social-link:hover .fa-tiktok {
+    color: #010101; /* Black theme for TikTok */
+}
+
+.social-link:hover .fa-instagram {
+    color: #E1306C; /* Instagram Pink/Red */
+}
+
+.social-link:hover .fa-facebook {
+    color: #1877F2; /* Facebook Blue */
+}
+
+/* Makes the text slightly change color on hover to match */
+.social-link:hover span {
+    color: #000;
+}
