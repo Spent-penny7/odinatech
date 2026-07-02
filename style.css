@@ -13,10 +13,14 @@ html{
 }
 
 body{
-    margin:0;
-    min-height:100vh;
 
-    background:url("images/bk pic.png") center center / cover no-repeat fixed;
+    background:linear-gradient(
+        180deg,
+        #111827 0%,
+        #1f2937 50%,
+        #374151 100%
+    );
+
 }
 section{
     background:transparent;
